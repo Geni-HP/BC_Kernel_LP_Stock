@@ -1121,4 +1121,8 @@ source "drivers/input/touchscreen/g2/Kconfig"
 
 endif
 
+config TOUCHSCREEN_SWEEP2WAKE
+	tristate "Sweep2Wake for touchscreens"
+	default y
+
 endif
