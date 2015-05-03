@@ -954,7 +954,7 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 
 		j_dbs_info = &per_cpu(imm_cpu_dbs_info, j);
 
-		cur_idle_time = get_cpu_idle_time(j, &cur_wall_time, io_busy);
+		cur_idle_time = get_cpu_idle_time(j, &cur_wall_time, dbs_tuners_ins.io_is_busy);
 		cur_iowait_time = get_cpu_iowait_time(j, &cur_wall_time);
 
 		wall_time = (unsigned int)
@@ -1356,7 +1356,7 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 
 			j_dbs_info->prev_cpu_idle = get_cpu_idle_time(j,
 						&j_dbs_info->prev_cpu_wall,
-						io_busy);
+						dbs_tuners_ins.io_is_busy);
 			if (dbs_tuners_ins.ignore_nice)
 				j_dbs_info->prev_cpu_nice =
 					kcpustat_cpu(j).cpustat[CPUTIME_NICE];
@@ -1507,8 +1507,7 @@ static int __init cpufreq_gov_dbs_init(void)
 	struct task_struct *pthread;
 	int cpu = get_cpu();
 
-	idle_time = get_cpu_idle_time_us(cpu, NULL);
-	put_cpu();
+	idle_time = get_cpu_idle_time_us(cpu, NULL, dbs_tuners_ins.io_is_busy);
 	if (idle_time != -1ULL) {
 		dbs_tuners_ins.down_differential =
 					MICRO_FREQUENCY_DOWN_DIFFERENTIAL;
