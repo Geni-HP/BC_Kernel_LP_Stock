@@ -1507,7 +1507,7 @@ static int __init cpufreq_gov_dbs_init(void)
 	struct task_struct *pthread;
 	int cpu = get_cpu();
 
-	idle_time = get_cpu_idle_time_us(cpu, NULL, dbs_tuners_ins.io_is_busy);
+	idle_time = get_cpu_idle_time_us(cpu, NULL);
 	if (idle_time != -1ULL) {
 		dbs_tuners_ins.down_differential =
 					MICRO_FREQUENCY_DOWN_DIFFERENTIAL;
