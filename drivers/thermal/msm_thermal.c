@@ -43,16 +43,16 @@ static struct thermal_info {
 };
 
 enum thermal_freqs {
-	FREQ_HELL		= 729600,
-	FREQ_VERY_HOT		= 1036800,
-	FREQ_HOT		= 1267200,
-	FREQ_WARM		= 1497600,
+	FREQ_HELL		= 1036800,
+	FREQ_VERY_HOT		= 1190400,
+	FREQ_HOT		= 1497600,
+	FREQ_WARM		= 1958400,
 };
 
 enum threshold_levels {
-	LEVEL_HELL		= 12,
-	LEVEL_VERY_HOT		= 9,
-	LEVEL_HOT		= 5,
+	LEVEL_HELL		= 10, /* temp_threshold + 10 = 80deg(with stock temp threshold) */
+	LEVEL_VERY_HOT		= 8, /* temp_threshold + 8 = 78deg(with stock temp threshold) */
+	LEVEL_HOT		= 5, /* temp_threshold + 5 = 75deg(with stock temp threshold) */
 };
 
 static struct msm_thermal_data msm_thermal_info;
